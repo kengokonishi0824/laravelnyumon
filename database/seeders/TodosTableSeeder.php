@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\todo;
 
 
-class TodosSeeder extends Seeder
+class TodosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,6 @@ class TodosSeeder extends Seeder
      * @return void
      */public function run()
     {
-    todos::create($param);
     $param = [
         'content' => 'aaa'
     ];
