@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\todo;
+use App\Models\Todo;
 
 
 class TodosTableSeeder extends Seeder
@@ -17,6 +17,8 @@ class TodosTableSeeder extends Seeder
     $param = [
         'content' => 'aaa'
     ];
+    Todo::create($param);
+
     
     }
 }
