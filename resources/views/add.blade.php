@@ -10,7 +10,7 @@
       
     </tr>
       <td>
-        <input type="text" name="Todo List">
+        <input type="text" name="content">
       </td>
       <td>
         <button>追加</button>
