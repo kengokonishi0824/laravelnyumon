@@ -3,67 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" href="./../../public/css/style.css">
+  <link rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo_list</title>
 </head>
 
-<body class=body>
-<form action="/add" method="post">
-  <table>
-    @csrf
-    <tr>
-      <th>
+<body class="body">
+  <div class="card">
+      <form action="/add" method="post">
+      @csrf
+      <p class="title">
         Todo List
-      </th>
-      <td>
-      </td>
-      
-    </tr>
-      <td>
-        <input type="text" name="content">
-      </td>
-      <td>
-        <button>追加</button>
-      </td>
-  </table>
-</form>
+      </p>
+      <div class="todo-add">
+      <input type="text" name="content" class="todo-add-form">
+      <input class="button-add" type="submit" value="追加">
+      </div>
+      </form>
+  
 
-
-<table>
+<div class="todo-content">
+  <table class="todo-list-table">
   <tr>
     <th>作成日</th>
-    <th>
-      <table>
-        <th>タスク名</th>
-        <th>更新</th>
-      </table>
-    </th>
+    <th>タスク名</th>
+    <th>更新</th>
     <th>削除</th>
   @foreach ($todos as $todo)
-  <tr>
+  </tr>
+  <tr align="center">
     <td>
       {{$todo->created_at}}
     </td>
       
     <td><form action="/edit" method="POST">
+        <input type="text" name="content" value="{{$todo->content}}" class="text-update">
+    </td>
       @csrf
-      <input type="text" name="content" value="{{$todo->content}}">
-      <input type ="hidden" name="id" value="{{$todo->id}}">
-      <input type="submit" value="更新">
+    <td>
+        <input type ="hidden" name="id" value="{{$todo->id}}">
+        <input type="submit" value="更新" class="button-update">
+    </td>
       </form>
     </td>
     <td><form action="/delete" method="POST">
       @csrf
       <input type ="hidden" name="id" value="{{$todo->id}}">
-      <input type="submit" value="削除">
+      <input type="submit" value="削除" class="button-delete">
       </form>
     </td>
   </tr>
   @endforeach
-</table>
-
-
-
+  </table>
+</div>
+</div>
 </body>
 </html>

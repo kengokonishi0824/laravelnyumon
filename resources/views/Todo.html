@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" href="./../css/app.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <body>
+    <div class="container">
+      <div class="card">
+        <p class="title mb-15">Todo List</p>
+        <div class="todo">
+          <form action="/todo/create" method="post" class="flex between mb-30">
+            <input type="hidden" name="_token" value="l46kPIRTHB9WIkv0fhYjeqfRH4nljSH9gNxijGK6"> <input type="text"
+              class="input-add" name="content">
+            <input class="button-add" type="submit" value="追加">
+          </form>
+          <table>
+            <tbody>
+              <tr>
+                <th>作成日</th>
+                <th>タスク名</th>
+                <th>更新</th>
+                <th>削除</th>
+              </tr>
+              <tr>
+                <td>
+                  作成日時
+                </td>
+                <form action="https://intense-reef-81125.herokuapp.com/todo/update?id=11194" method="post"></form>
+                <input type="hidden" name="_token" value="l46kPIRTHB9WIkv0fhYjeqfRH4nljSH9gNxijGK6">
+                <td>
+                  <input type="text" class="input-update" value="うううだｄ" name="content">
+                </td>
+                <td>
+                  <button class="button-update">更新</button>
+                </td>
+  
+                <td>
+                  <form action="https://intense-reef-81125.herokuapp.com/todo/delete?id=11194" method="post">
+                    <input type="hidden" name="_token" value="l46kPIRTHB9WIkv0fhYjeqfRH4nljSH9gNxijGK6"> <button
+                      class="button-delete">削除</button>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  2022-09-27 03:01:38
+                </td>
+                <form action="https://intense-reef-81125.herokuapp.com/todo/update?id=11204" method="post"></form>
+                <input type="hidden" name="_token" value="l46kPIRTHB9WIkv0fhYjeqfRH4nljSH9gNxijGK6">
+                <td>
+                  <input type="text" class="input-update" value="あああ" name="content">
+                </td>
+                <td>
+                  <button class="button-update">更新</button>
+                </td>
+  
+                <td>
+                  <form action="https://intense-reef-81125.herokuapp.com/todo/delete?id=11204" method="post">
+                    <input type="hidden" name="_token" value="l46kPIRTHB9WIkv0fhYjeqfRH4nljSH9gNxijGK6"> <button
+                      class="button-delete">削除</button>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+        </div>
+      </div>
+    </div>
+  
+  
+  
+  </body>
+</body>
+</html>
