@@ -12,6 +12,14 @@
   <div class="card">
       <form action="/add" method="post">
       @csrf
+      @if ($errors->has('content'))
+        <tr>
+          <th>ERROR</th>
+          <td>
+            {{$errors->first('content')}}
+          </td>
+        </tr>
+        @endif
       <p class="title">
         Todo List
       </p>
