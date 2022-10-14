@@ -10,6 +10,12 @@
 
 <body class="body">
   <div class="card">
+    @if (Auth::check())
+<p>ログイン中ユーザー: {{$user->name . ' メール' . $user->email . ''}}</p>
+@else
+<p>ログインしてください（<a href="/login">ログイン</a>｜
+  <a href="/register">登録</a>）</p>
+@endif
       <form action="/add" method="post">
       @csrf
       @if ($errors->has('content'))
