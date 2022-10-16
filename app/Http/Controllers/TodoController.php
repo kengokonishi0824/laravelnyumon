@@ -55,4 +55,13 @@ class TodoController extends Controller
         return redirect('/');
     }
 
+    public function search()
+    {
+        $todos = Todo::all();        
+        $user = Auth::user();
+        $param = ['todos' => $todos, 'user' =>$user];
+        return view('search', $param);
+    }
+
+
 }

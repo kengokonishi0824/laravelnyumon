@@ -11,9 +11,7 @@
 <body class="body">
   <div class="card">
     <div class="card-header">
-      <p class="title">
-        Todo List
-      </p>
+      <p class="title">タスク検索</p>
       @if (Auth::check())
       <p class="user-name">「{{$user->name}}」でログイン中</p>
       @else
@@ -25,7 +23,7 @@
       <input class="btn btn-logout" type="submit" value="ログアウト">
       </form>
     </div>
-      <form action="/add" method="post">
+      <form action="" method="post">
       @csrf
       @if ($errors->has('content'))
         <tr>
@@ -36,22 +34,19 @@
         </tr>
         @endif
 
-    <a class="btn btn-search" href="/search">タスク検索</a>
-
     <div class="todo-add">
     <input type="text" name="content" class="todo-add-form">
     <select name="tag_id" class="select-tag">
-            <option value="1">家事</option>
-            <option value="2">勉強</option>
-            <option value="3">運動</option>
-            <option value="4">食事</option>
-            <option value="5">移動</option>
+            <option value="1"></option>
+            <option value="2">家事</option>
+            <option value="3">勉強</option>
+            <option value="4">運動</option>
+            <option value="5">食事</option>
+            <option value="6">移動</option>
           </select>
-    <input class="button-add" type="submit" value="追加">
+    <input class="button-add" type="submit" value="検索">
     </div>
     </form>
-
-
 
 <div class="todo-content">
   <table class="todo-list-table">
@@ -61,41 +56,9 @@
     <th>タグ</th>
     <th>更新</th>
     <th>削除</th>
-  @foreach ($todos as $todo)
   </tr>
   <tr align="center">
-    <td>
-      {{$todo->created_at}}
-    </td>
-      
-    <td><form action="/edit" method="POST">
-        <input type="text" name="content" value="{{$todo->content}}" class="text-update">
-    </td>
-      @csrf
-    <td>
-      <select name="tag_id" class="select-tag">
-        <option selected="" value="1">家事</option>
-        <option value="2">勉強</option>
-        <option value="3">運動</option>
-        <option value="4">食事</option>
-        <option value="5">移動</option>
-        </select>
-    </td>
-    <td>
-        <input type ="hidden" name="id" value="{{$todo->id}}">
-        <input type="submit" value="更新" class="button-update">
-    </td>
-      </form>
-    <td><form action="/delete" method="POST">
-      @csrf
-      <input type ="hidden" name="id" value="{{$todo->id}}">
-      <input type="submit" value="削除" class="button-delete">
-      </form>
-    </td>
-  </tr>
-  @endforeach
-  </table>
+</table>
 </div>
-</div>
-</body>
-</html>
+
+<a class="btn btn-back" href="/home">戻る</a>

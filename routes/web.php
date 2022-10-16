@@ -36,4 +36,5 @@ Route::get('/edit', [TodoController::class, 'edit']);
 Route::post('/edit', [TodoController::class, 'update']);
 Route::get('/delete', [TodoController::class, 'delete']);
 Route::post('/delete', [TodoController::class, 'remove']);
+Route::get('/search', [TodoController::class, 'search']);
 
