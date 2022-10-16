@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTagIdToTodos extends Migration
+class AddTagIdToTodosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,7 @@ class AddTagIdToTodos extends Migration
     public function up()
     {
         Schema::table('todos', function (Blueprint $table) {
-            $table->bigInteger('tag_id')->unsigned()->after('content');
-            $table->foreign('tag_id')->references('id')->on('tags')->OnDelete('cascade');
-            //
+        $table->foreignId('tag_id')->constrained();
         });
     }
 
