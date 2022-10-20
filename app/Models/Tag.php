@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    use HasFactory;
+    public function tag(){
+        return $this->hasOne('App\Models\Todo');
+    }
+
 }

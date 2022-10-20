@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use App\Models\Tag;
 use App\Http\Requests\TodoRequest;
 
 
@@ -15,11 +16,14 @@ class TodoController extends Controller
     {
         $todos = Todo::all();        
         $user = Auth::user();
-        $param = ['todos' => $todos, 'user' =>$user];
+        $tags = Tag::all();
+        $param = ['todos' => $todos, 'user' =>$user, 'tags'=>$tags];
         return view('index', $param);
 
     }
 
+
+    
     public function add()
     {
         return view('add');
@@ -30,6 +34,7 @@ class TodoController extends Controller
         Todo::create($form);
         return redirect('/');
     }
+
 
     public function edit(Request $request)
     {
@@ -63,5 +68,14 @@ class TodoController extends Controller
         return view('search', $param);
     }
 
+    public function relate(Request $request)
+    {
+        $tags = Tag::all();
+        return view('tag.index', ['tags' => $tags]);
+    }
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

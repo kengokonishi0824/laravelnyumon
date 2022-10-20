@@ -25,7 +25,10 @@
       <input class="btn btn-logout" type="submit" value="ログアウト">
       </form>
     </div>
-      <form action="/add" method="post">
+
+    <a class="btn btn-search" href="/search">タスク検索</a>
+    <div class="todo-add">
+    <form action="/add" method="post">
       @csrf
       @if ($errors->has('content'))
         <tr>
@@ -35,21 +38,16 @@
           </td>
         </tr>
         @endif
-
-    <a class="btn btn-search" href="/search">タスク検索</a>
-
-    <div class="todo-add">
     <input type="text" name="content" class="todo-add-form">
     <select name="tag_id" class="select-tag">
-            <option value="1">家事</option>
-            <option value="2">勉強</option>
-            <option value="3">運動</option>
-            <option value="4">食事</option>
-            <option value="5">移動</option>
-          </select>
+      @foreach ($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->category}}</option>
+      @endforeach
+    </select>
     <input class="button-add" type="submit" value="追加">
     </div>
     </form>
+
 
 
 
