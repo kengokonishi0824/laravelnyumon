@@ -10,7 +10,6 @@ class Todo extends Model
     use HasFactory;
     protected $fillable = ['content','tag_id'];
     public function getTitle(){
-        $this->category ;
     }
     public function tag(){
 				return $this->belongsTo('App\Models\Tag');
