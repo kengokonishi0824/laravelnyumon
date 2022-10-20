@@ -14,10 +14,10 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todos = Todo::all();        
+        $todo = Todo::all();        
         $user = Auth::user();
-        $tags = Tag::all();
-        $param = ['todos' => $todos, 'user' =>$user, 'tags'=>$tags];
+        $tag = Tag::all();
+        $param = ['todos' => $todo, 'user' =>$user, 'tags'=>$tag];
         return view('index', $param);
 
     }
@@ -60,12 +60,20 @@ class TodoController extends Controller
         return redirect('/');
     }
 
-    public function search()
+    public function find()
     {
-        $todos = Todo::all();        
+        return view('find', ['input' => '']);
+    }
+    public function search(Request $request)
+    {       
+        $todo = Todo::find($request->input);
         $user = Auth::user();
-        $param = ['todos' => $todos, 'user' =>$user];
+        $tags = Tag::all();
+        $param = ['todo' => $todo, 'user' =>$user, 'tags'=>$tags,'input' => $request->input];
         return view('search', $param);
+
+        
+        
     }
 
     public function relate(Request $request)
@@ -78,4 +86,7 @@ class TodoController extends Controller
     {
         $this->middleware('auth');
     }
+
+
+
 }

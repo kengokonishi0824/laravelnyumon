@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function tag(){
-        return $this->hasOne('App\Models\Todo');
+    public function todo(){
+        return $this->hasMany('App\Models\Todo');
     }
 
 }

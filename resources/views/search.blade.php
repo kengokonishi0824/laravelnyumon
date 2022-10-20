@@ -33,22 +33,22 @@
           </td>
         </tr>
         @endif
-
-    <div class="todo-add">
-    <input type="text" name="content" class="todo-add-form">
-    <select name="tag_id" class="select-tag">
-            <option value="1"></option>
-            <option value="2">家事</option>
-            <option value="3">勉強</option>
-            <option value="4">運動</option>
-            <option value="5">食事</option>
-            <option value="6">移動</option>
-          </select>
-    <input class="button-add" type="submit" value="検索">
-    </div>
+<div class="todo-add">
+  <form action="find" method="POST">
+  @csrf
+  <input type="text" name="input" value="{{$input}}" class="todo-add-form">
+  <select name="tag_id" class="select-tag">
+            <option value=""></option>
+      @foreach ($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->category}}</option>
+      @endforeach
+    </select>
+  <input type="submit" value="検索" class= "button-add">
     </form>
+</div>
 
 <div class="todo-content">
+  @if (@isset($todo))
   <table class="todo-list-table">
   <tr>
     <th>作成日</th>
@@ -58,6 +58,7 @@
     <th>削除</th>
   </tr>
   <tr align="center">
+@endif
 </table>
 </div>
 
