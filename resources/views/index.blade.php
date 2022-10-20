@@ -28,7 +28,8 @@
 
     <a class="btn btn-search" href="/search">タスク検索</a>
     <div class="todo-add">
-        @csrf
+    <form action="/add" method="post">
+      @csrf
       @if ($errors->has('content'))
         <tr>
           <th>ERROR</th>
@@ -37,18 +38,12 @@
           </td>
         </tr>
         @endif
-    <form action="/add" method="post">
     <input type="text" name="content" class="todo-add-form">
     <select name="tag_id" class="select-tag">
-      @foreach($tags as $tag)
-      @if(old('tag_id',$todo->tag_id) == $tag->id)
-      <option value="{{ $tag->id }}" selected>{{ $tag->category }}</option>
-      @else
-      <option value="{{ $tag->id }}">{{ $tag->category }}</option>
-      @endif
+      @foreach ($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->category}}</option>
       @endforeach
-
-
+    </select>
     <input class="button-add" type="submit" value="追加">
     </form>
     </div>
