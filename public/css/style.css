@@ -20,6 +20,14 @@
   justify-content: space-between;
 }
 
+.select-tag{
+  padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+}
+
 .todo-add{
   width: 100%;
   display: flex;
@@ -90,7 +98,7 @@
     outline: none;
 }
 
-text-update{
+.text-update{
     width: 90%;
     padding: 5px;
     border-radius: 5px;

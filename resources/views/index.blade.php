@@ -68,15 +68,19 @@
     </td>
       
     <td><form action="/edit" method="POST">
-        <input type="text" name="content" value="{{$todo->content}}" class="text-update">
+    <input type="text" name="content" value="{{$todo->content}}" class="text-update">
     </td>
       @csrf
     <td>
       <select name="tag_id" class="select-tag">
       @foreach ($tags as $tag)
-            <option value="{{$tag->id}}">{{$tag->category}}</option>
+              @if($tag->id==$todo->tag_id)
+                  <option value="{{ $tag->id}}" selected>{{$tag->category}}</option>
+              @else
+                  <option value="{{ $tag->id}}" >{{$tag->category}}</option>
+              @endif
       @endforeach
-    </select>
+      </select>
     </td>
     <td>
         <input type ="hidden" name="id" value="{{$todo->id}}">

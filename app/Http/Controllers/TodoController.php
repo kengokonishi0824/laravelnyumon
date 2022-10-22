@@ -38,13 +38,14 @@ class TodoController extends Controller
     public function edit(Request $request)
     {
         $todo = Todo::find($request->id);
-        return view('edit', ['form' => $todo]);
+        $tag = Todo::find($request->tag_id);
+        return view('edit', ['form' => $todo, $tag]);
     }
     public function update(TodoRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        Todo::where('id', $request->id)->update($form);
+        Todo::where('id', $request->id,)->update($form);
         return redirect('home');
     }
 
@@ -62,7 +63,10 @@ class TodoController extends Controller
 
 
 
-    
+    public function find()
+    {
+        return view('find', ['input' => '']);
+    }
     public function search(Request $request)
     {       
         $user = Auth::user();

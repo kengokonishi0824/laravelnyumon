@@ -68,7 +68,11 @@
     <td>
       <select name="tag_id" class="select-tag">
       @foreach ($tags as $tag)
-            <option value="{{$tag->id}}">{{$tag->category}}</option>
+              @if($tag->id==$todo->tag_id)
+                  <option value="{{ $tag->id}}" selected>{{$tag->category}}</option>
+              @else
+                  <option value="{{ $tag->id}}" >{{$tag->category}}</option>
+              @endif
       @endforeach
     </td>
     <td>

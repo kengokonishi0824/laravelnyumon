@@ -30,7 +30,6 @@ require __DIR__.'/auth.php';
 
 
 Route::get('/home', [TodoController::class, 'index']);
-Route::get('/add', [TodoController::class, 'add']);
 Route::post('/add', [TodoController::class, 'create']);
 Route::get('/edit', [TodoController::class, 'edit']);
 Route::post('/edit', [TodoController::class, 'update']);
