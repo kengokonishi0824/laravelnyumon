@@ -34,7 +34,7 @@
         </tr>
         @endif
 <div class="todo-add">
-  <form action="find" method="POST">
+  <form action="search" method="POST">
   @csrf
   <input type="text" name="input" value="{{$input}}" class="todo-add-form">
   <select name="tag_id" class="select-tag">
@@ -48,7 +48,6 @@
 </div>
 
 <div class="todo-content">
-  @if (@isset($todo))
   <table class="todo-list-table">
   <tr>
     <th>作成日</th>
@@ -56,10 +55,36 @@
     <th>タグ</th>
     <th>更新</th>
     <th>削除</th>
-  </tr>
+  @foreach ($todos as $todo)
   <tr align="center">
-@endif
+    <td>
+      {{$todo->created_at}}
+    </td>
+      
+    <td><form action="/edit" method="POST">
+        <input type="text" name="content" value="{{$todo->content}}" class="text-update">
+    </td>
+      @csrf
+    <td>
+      <select name="tag_id" class="select-tag">
+      @foreach ($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->category}}</option>
+      @endforeach
+    </td>
+    <td>
+        <input type ="hidden" name="id" value="{{$todo->id}}">
+        <input type="submit" value="更新" class="button-update">
+    </td>
+      </form>
+    <td><form action="/delete" method="POST">
+      @csrf
+      <input type ="hidden" name="id" value="{{$todo->id}}">
+      <input type="submit" value="削除" class="button-delete">
+      </form>
+    </td>
+  </tr>
+  @endforeach
 </table>
 </div>
 
-<a class="btn btn-back" href="/home">戻る</a>
+<a class="btn-back" href="/home">戻る</a>

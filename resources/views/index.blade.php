@@ -21,14 +21,16 @@
       <a href="/register">登録</a></p>
       @endif
       <form method="post" action="/logout">
-      <input type="hidden" name="_token" value="4E82GJiYu1NT8Y88TQsCnZwcvoHwDiROAASTJsU3">      
-      <input class="btn btn-logout" type="submit" value="ログアウト">
+      @csrf
+      <input class="btn-logout" type="submit" value="ログアウト">
       </form>
     </div>
 
-    <a class="btn btn-search" href="/search">タスク検索</a>
-    <div class="todo-add">
+    <a class="btn-search" href="/search">タスク検索</a>
+
     <form action="/add" method="post">
+    <div class="todo-add">
+    
       @csrf
       @if ($errors->has('content'))
         <tr>
@@ -39,17 +41,15 @@
         </tr>
         @endif
     <input type="text" name="content" class="todo-add-form">
+    <input type ="hidden" name="user_id" value="{{$user->id}}">
     <select name="tag_id" class="select-tag">
       @foreach ($tags as $tag)
             <option value="{{$tag->id}}">{{$tag->category}}</option>
       @endforeach
     </select>
     <input class="button-add" type="submit" value="追加">
-    </form>
     </div>
-
-
-
+    </form>
 
 
 <div class="todo-content">
@@ -73,12 +73,10 @@
       @csrf
     <td>
       <select name="tag_id" class="select-tag">
-        <option selected="" value="1">家事</option>
-        <option value="2">勉強</option>
-        <option value="3">運動</option>
-        <option value="4">食事</option>
-        <option value="5">移動</option>
-        </select>
+      @foreach ($tags as $tag)
+            <option value="{{$tag->id}}">{{$tag->category}}</option>
+      @endforeach
+    </select>
     </td>
     <td>
         <input type ="hidden" name="id" value="{{$todo->id}}">

@@ -14,12 +14,11 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todo = Todo::all();        
         $user = Auth::user();
+        $todo = Todo::where('user_id',$user->id)->get();        
         $tag = Tag::all();
         $param = ['todos' => $todo, 'user' =>$user, 'tags'=>$tag];
         return view('index', $param);
-
     }
 
 
@@ -32,7 +31,7 @@ class TodoController extends Controller
     {
         $form = $request->all();
         Todo::create($form);
-        return redirect('/');
+        return redirect('home');
     }
 
 
@@ -46,7 +45,7 @@ class TodoController extends Controller
         $form = $request->all();
         unset($form['_token']);
         Todo::where('id', $request->id)->update($form);
-        return redirect('/');
+        return redirect('home');
     }
 
     public function delete(Request $request)
@@ -57,19 +56,28 @@ class TodoController extends Controller
     public function remove(Request $request)
     {
         Todo::find($request->id)->delete();
-        return redirect('/');
+        return redirect('home');
     }
 
-    public function find()
-    {
-        return view('find', ['input' => '']);
-    }
+
+
+
+    
     public function search(Request $request)
     {       
-        $todo = Todo::find($request->input);
         $user = Auth::user();
         $tags = Tag::all();
-        $param = ['todo' => $todo, 'user' =>$user, 'tags'=>$tags,'input' => $request->input];
+        if($request->tag_id==null){
+            $todo = Todo::where('user_id', $user->id)
+                    ->where('content', 'LIKE' ,"%".$request->input."%")
+                    ->get();
+        }else{
+            $todo = Todo::where('user_id', $user->id)
+                    ->where('content', 'LIKE' ,"%".$request->input."%")
+                    ->where('tag_id', $request->tag_id)
+                    ->get();
+        };
+        $param = ['todos' => $todo, 'user' =>$user, 'tags'=>$tags,'input' => $request->input];
         return view('search', $param);
 
         
